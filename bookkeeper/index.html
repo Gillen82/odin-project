@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="./css/style.css" />
+		<title>BookKeeper</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="book-form">
+				<h1>Add New Book</h1>
+				<form>
+					<input class="new-book-title" type="text" name="input" placeholder="Book Title" required />
+					<input class="new-book-author" type="text" name="author" placeholder="Book Author" required />
+					<input class="new-book-pages" type="text" name="pages" placeholder="Book Pages" required />
+					<div class="been-read-controller">
+						<p>Been Read:</p>
+						<input class="been-read" type="checkbox" name="checkbox" />
+					</div>
+					<button type="submit" class="add-book">Add Book</button>
+				</form>
+			</div>
+			<div class="library">
+				<h1>My Library</h1>
+				<div class="books">
+					<!-- books will be added here  -->
+				</div>
+			</div>
+		</div>
+		<script src="./js/app.js"></script>
+	</body>
+</html>

@@ -1,0 +1,155 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	font-family: 'Tinos';
+	font-size: 62.5%;
+	line-height: 1.5;
+	--steel-blue: #4682b4;
+	--cool-grey: #cbcbcb;
+}
+
+h1 {
+	color: var(--steel-blue);
+	font-size: 2.5rem;
+}
+
+p {
+	font-size: 1.6rem;
+}
+
+.container {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+}
+
+.book-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 50px;
+	width: 30%;
+	height: 100vh;
+	padding: 50px;
+	background-color: var(--cool-grey);
+}
+
+.book-form form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	width: 100%;
+}
+
+.book-form form input {
+	width: 100%;
+	padding: 10px 8px;
+	color: var(--steel-blue);
+	border: 1px solid var(--steel-blue);
+}
+
+.book-form form input:focus {
+	font-weight: 800;
+	color: var(--steel-blue);
+	outline: 1px solid var(--steel-blue);
+	box-shadow: 0 6px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-form form input::placeholder {
+	font-weight: 200;
+	color: var(--steel-blue);
+	filter: opacity(0.5);
+}
+
+.book-form form .been-read-controller p {
+	color: var(--steel-blue);
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+.book-form form input[type='checkbox'] {
+	outline: none;
+	box-shadow: none;
+	accent-color: var(--steel-blue);
+	transform: scale(1.2);
+}
+
+.book-form form button {
+	padding: 12px 16px;
+	border: none;
+	background-color: var(--steel-blue);
+	color: #eee;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.book-form form button:hover {
+	filter: brightness(1.2);
+}
+
+/* books */
+.library {
+	width: 70%;
+	padding: 50px;
+}
+
+.library h1 {
+	text-align: center;
+}
+
+.books {
+	margin-top: 50px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+}
+
+.books .book-card {
+	min-width: 25%;
+	height: 300px;
+	background-color: #eee;
+	padding: 50px 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.books .book-card:hover {
+	transform: scale(1.1);
+}
+
+.books .book-card .book-controls {
+	display: flex;
+	justify-content: space-around;
+}
+
+.books .book-card button {
+	padding: 12px 16px;
+	border: none;
+	background-color: var(--steel-blue);
+	color: #eee;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+}
+
+.books .book-card button:hover {
+	filter: brightness(1.2);
+}
+
+/* books been read? */
+.been-read {
+	border: 2px solid green;
+}
+
+.not-read {
+	border: 2px solid red;
+}
