@@ -46,6 +46,14 @@ body {
 	color: var(--light-grey);
 }
 
+.active-player {
+	background-color: #19b181;
+}
+
+.active-player h1 {
+	color: var(--charcoal);
+}
+
 .game-board {
 	width: 600px;
 	height: 600px;
@@ -62,8 +70,14 @@ body {
 	filter: opacity(0.5);
 	transition: all 0.5s ease-in-out;
 	border: 1px solid var(--light-grey);
+
+	color: var(--light-grey);
+	font-size: 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .tile:hover {
-	filter: opacity(0);
+	filter: opacity(1);
 }
