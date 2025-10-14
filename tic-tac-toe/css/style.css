@@ -49,5 +49,21 @@ body {
 .game-board {
 	width: 600px;
 	height: 600px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 	background-color: darkgreen;
+	box-shadow: 0 8px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tile {
+	width: 200px;
+	height: 200px;
+	background-color: #222;
+	filter: opacity(0.5);
+	transition: all 0.5s ease-in-out;
+	border: 1px solid var(--light-grey);
+}
+
+.tile:hover {
+	filter: opacity(0);
 }
