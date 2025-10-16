@@ -1,90 +1,90 @@
 'use strict';
 
-// set up game board
-const Board = (() => {
-	// initial settings
-	const board = [];
+// create gameboard
+const Gameboard = (function () {
 	const rows = 3;
 	const cols = 3;
-	// get game board element
-	const gameBoard = document.querySelector('.game-board');
-	// create tile elements
+	const gameArea = [];
+
 	for (let i = 0; i < rows; i++) {
 		for (let j = 0; j < cols; j++) {
-			const tileEl = document.createElement('div');
-			tileEl.classList.add('tile');
-			board.push(tileEl);
+			gameArea.push('[]');
 		}
 	}
-	// display board tiles
-	board.forEach((tile) => {
-		gameBoard.appendChild(tile);
-	});
 
-	return { board };
+	return { rows, cols, gameArea };
 })();
 
-// set up player functionality
-const Player = (() => {
-	let activePlayer = 0;
-	const playerOnePositions = [];
-	const playerTwoPositions = [];
-	const positions = [playerOnePositions, playerTwoPositions];
-	// set active player
-	let currentPlayer = document.querySelector(`.player--${activePlayer}`);
-	currentPlayer.classList.add('active-player');
+// create players
+const Players = (function () {
+	const playerOne = [['X'], []];
+	const playerTwo = [['O'], []];
+	const players = [playerOne, playerTwo];
+
+	return { players };
+})();
+
+// display UI
+const displayUI = (function () {
+	// set tile index
+	let tileIndex = 0;
+	const gameBoardEl = document.querySelector('.game-board');
+	// display tiles
+	const displayTiles = function () {
+		Gameboard.gameArea.forEach((tile) => {
+			// create tile element
+			tile = document.createElement('div');
+			tile.classList.add('tile');
+			tile.setAttribute('data-index', tileIndex);
+			gameBoardEl.appendChild(tile);
+			tileIndex++;
+		});
+		return gameBoardEl;
+	};
+	return { displayTiles };
+})();
+
+// game control
+const Game = function () {
+	let playerIndex = 0;
+	let currentPlayer = Players.players[playerIndex];
+	const gb = displayUI.displayTiles();
+
 	// switch players
-	const switchPlayers = () => {
-		currentPlayer.classList.toggle('active-player');
-		activePlayer = activePlayer == 0 ? 1 : 0;
-		currentPlayer = document.querySelector(`.player--${activePlayer}`);
-		currentPlayer.classList.toggle('active-player');
-		return activePlayer;
+	const switchPlayer = function () {
+		playerIndex = playerIndex == 0 ? 1 : 0;
+		currentPlayer = Players.players[playerIndex];
 	};
 
-	return { activePlayer, positions, switchPlayers };
-})();
+	// check for game result
+	const gameResult = function (positions) {
+		// convert player poistions to ints
+		positions = positions.map((n) => parseInt(n));
 
-// play game
-const playGame = (() => {
-	// store game state
-	let isGameOver = false;
-	// store player index
-	let playerIndex = Player.activePlayer;
-	// store active marker
-	const Markers = ['X', 'O'];
-	let currentMarker = Markers[Player.activePlayer];
-	// winning patterns
-	const winningPatterns = [
-		[0, 1, 2],
-		[3, 4, 5],
-		[6, 7, 8],
-		[0, 3, 6],
-		[1, 4, 7],
-		[2, 5, 8],
-		[0, 4, 8],
-		[2, 4, 6],
-	];
-	// add playermarker to the board and switch player
-	Board.board.forEach((tile) => {
-		tile.addEventListener('click', () => {
-			if (!tile.innerText) {
-				tile.innerText = currentMarker;
-				Player.positions[playerIndex].push(Board.board.indexOf(tile));
-				// check for winning combination
-				winningPatterns.forEach((card) => {
-					let result = card.every((num) => Player.positions[playerIndex].includes(num));
-					if (result) {
-						console.log('WINNER 🎊');
-						isGameOver = true;
-					}
-				});
-				if (!isGameOver) {
-					console.log(Player.positions[playerIndex]);
-					playerIndex = Player.switchPlayers();
-					currentMarker = Markers[playerIndex];
-				}
-			}
+		const winningCombinations = [
+			[0, 1, 2],
+			[3, 4, 5],
+			[6, 7, 8],
+			[0, 3, 6],
+			[1, 4, 7],
+			[2, 5, 8],
+			[0, 4, 8],
+			[2, 4, 6],
+		];
+
+		winningCombinations.forEach((combi) => {
+			let result = combi.every((n) => positions.includes(n));
+			console.log(result);
 		});
+	};
+	// add click event to tiles
+	gb.addEventListener('click', (e) => {
+		e.target.innerText = currentPlayer[0];
+		currentPlayer[1].push(e.target.getAttribute('data-index'));
+		gameResult(currentPlayer[1]);
+
+		switchPlayer();
 	});
-})();
+};
+
+Game();

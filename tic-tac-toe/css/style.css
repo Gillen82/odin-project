@@ -12,6 +12,7 @@
 	/* variables */
 	--light-grey: #ddd;
 	--charcoal: #222;
+	--activated: #19b181;
 }
 
 body {
@@ -47,7 +48,7 @@ body {
 }
 
 .active-player {
-	background-color: #19b181;
+	background-color: var(--activated);
 }
 
 .active-player h1 {
@@ -80,4 +81,25 @@ body {
 
 .tile:hover {
 	filter: opacity(1);
+}
+
+.restart-game {
+	margin-top: 50px;
+	width: 150px;
+	padding: 20px 0;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: var(--charcoal);
+	color: var(--light-grey);
+	text-transform: uppercase;
+	font-family: 'Coiny';
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.restart-game:hover {
+	background-color: var(--activated);
+	color: var(--charcoal);
 }
